@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Personal Expense Tracker"><title>Personal Expense Tracker</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+<a class="brand" href="#dashboard"><span class="brand-mark">E</span><span>ExpenseFlow</span></a>
+<p class="nav-heading">WORKSPACE</p>
+<nav class="navigation" aria-label="Main navigation">
+<a class="nav-link active" href="#dashboard">▦ Dashboard</a><a class="nav-link" href="#transactions">⇄ Transactions</a><a class="nav-link" href="#add-transaction">＋ Add transaction</a>
+</nav>
+<div class="sidebar-note"><span>✦</span><strong>Small steps, better finances.</strong><p>Keep your income and spending organized in one simple place.</p></div>
+<p class="sidebar-footer">Personal Expense Tracker</p>
+</aside>
+<main class="main-content">
+<header class="page-header" id="dashboard"><div><p class="eyebrow">PERSONAL FINANCE</p><h1>Dashboard</h1><p class="page-subtitle">A clear overview of your money.</p></div><button class="button button-primary" id="addNewBtn" type="button">＋ Add transaction</button></header>
+<section class="summary-grid" aria-label="Financial summary">
+<article class="summary-card income-card"><div class="summary-top"><span>Total income</span><span class="summary-icon">↗</span></div><p class="summary-value" id="totalIncome">৳0.00</p><p class="summary-caption">All recorded income</p></article>
+<article class="summary-card expense-card"><div class="summary-top"><span>Total expenses</span><span class="summary-icon">↘</span></div><p class="summary-value" id="totalExpenses">৳0.00</p><p class="summary-caption">All recorded expenses</p></article>
+<article class="summary-card balance-card"><div class="summary-top"><span>Current balance</span><span class="summary-icon">৳</span></div><p class="summary-value" id="currentBalance">৳0.00</p><p class="summary-caption">Income minus expenses</p></article>
+</section>
+<section class="main-grid">
+<section class="panel transactions-panel" id="transactions">
+<div class="panel-heading"><div><h2>Transaction history</h2><p>Review and manage your transactions.</p></div><span class="count-pill" id="transactionCount">0 transactions</span></div>
+<div class="toolbar"><div class="filter-group" role="group" aria-label="Filter transactions">
+<button class="filter-button active" type="button" data-filter="all" aria-pressed="true">All</button><button class="filter-button" type="button" data-filter="income" aria-pressed="false">Income</button><button class="filter-button" type="button" data-filter="expense" aria-pressed="false">Expenses</button></div>
+<label class="search-wrap"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search transactions" aria-label="Search transactions"></label></div>
+<div class="table-wrap"><table><thead><tr><th>TRANSACTION</th><th>CATEGORY</th><th>DATE</th><th>TYPE</th><th>AMOUNT</th><th>ACTIONS</th></tr></thead><tbody id="transactionList"></tbody></table></div>
+<div class="empty-state visible" id="emptyState"><div class="empty-art">▤</div><h3 id="emptyTitle">No transactions yet</h3><p id="emptyMessage">Add your first income or expense to see it here.</p></div>
+</section>
+<section class="panel form-panel" id="add-transaction"><div class="panel-heading"><div><h2 id="formHeading">Add transaction</h2><p>Enter the details below.</p></div></div>
+<form id="transactionForm" novalidate>
+<div class="form-field"><label for="title">Transaction title</label><input id="title" name="title" type="text" maxlength="60" placeholder="e.g. Monthly salary" required><small class="field-error" id="titleError"></small></div>
+<div class="form-field"><label for="amount">Amount (BDT)</label><input id="amount" name="amount" type="number" min="0.01" step="0.01" placeholder="e.g. 2500" required><small class="field-error" id="amountError"></small></div>
+<fieldset class="form-field type-field"><legend>Transaction type</legend><div class="type-options"><label class="type-choice income-choice"><input type="radio" name="type" value="income" checked><span>↗ Income</span></label><label class="type-choice expense-choice"><input type="radio" name="type" value="expense"><span>↘ Expense</span></label></div></fieldset>
+<div class="form-field"><label for="category">Category</label><select id="category" name="category" required><option value="">Select a category</option><option>Food</option><option>Shopping</option><option>Salary</option><option>Transport</option><option>Housing</option><option>Healthcare</option><option>Education</option><option>Entertainment</option><option>Freelance</option><option>Other</option></select><small class="field-error" id="categoryError"></small></div>
+<div class="form-field"><label for="date">Date</label><input id="date" name="date" type="date" required><small class="field-error" id="dateError"></small></div>
+<button class="button button-primary submit-button" id="submitBtn" type="submit">＋ Add transaction</button><button class="button button-secondary cancel-button hidden" id="cancelEditBtn" type="button">Cancel edit</button>
+</form></section></section>
+<section class="panel monthly-panel"><div class="panel-heading"><div><h2>Monthly expense summary</h2><p>Expense totals grouped by month.</p></div></div><div class="monthly-grid" id="monthlySummary"><p class="monthly-empty">No monthly expense data yet.</p></div></section>
+<footer class="app-footer">© <span id="currentYear"></span> ExpenseFlow · Personal Expense Tracker</footer>
+</main></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body></html>
